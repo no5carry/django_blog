@@ -11,3 +11,11 @@ def post_list(request):
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'blog/post_detail.html', {'post': post})
+
+def post_filter(request, str):
+    posts_filter = Post.objects.filter(them=str)
+    return render(request, 'blog/post_list.html', {'posts': posts_filter})
+
+def month_archive(request, year, month):
+    posts_filter = Post.objects.all()
+    return render(request, 'blog/post_list.html', {'posts': posts_filter})
